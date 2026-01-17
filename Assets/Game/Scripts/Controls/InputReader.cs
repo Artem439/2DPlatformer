@@ -5,7 +5,7 @@ namespace Game.Scripts.Controls
 {
     public class InputReader : MonoBehaviour
     {
-        private const int JumpButton = 32;
+        private const KeyCode JumpButton = KeyCode.Space;
         
         private const string Horizontal = "Horizontal";
 
@@ -16,12 +16,11 @@ namespace Game.Scripts.Controls
 
         private void Update()
         {
-            _direction = new Vector3(Input.GetAxisRaw(Horizontal), 0f, 0f);
-            
-            if (_direction.sqrMagnitude > 0f)
-                Moved?.Invoke(_direction);
+            _direction.x = Input.GetAxisRaw(Horizontal);
 
-            if (Input.GetKey((KeyCode)JumpButton))
+            Moved?.Invoke(_direction);
+
+            if (Input.GetKeyDown(JumpButton))
                 JumpButtonClicked?.Invoke();
         }
     }

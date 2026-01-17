@@ -1,14 +1,17 @@
 ﻿using Game.Scripts.Controls;
+using Game.Scripts.Entities.Utils;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Player
 {
     [RequireComponent(typeof(InputReader))]
+    [RequireComponent(typeof(Flipper))]
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 3f;
         
         private InputReader _inputReader;
+        private Flipper _flipper;
         
         private Vector3 _direction;
         
@@ -17,6 +20,7 @@ namespace Game.Scripts.Entities.Player
         private void Awake()
         {
             _inputReader = GetComponent<InputReader>();
+            _flipper = GetComponent<Flipper>();
         }
         
         private void OnEnable()
@@ -36,7 +40,9 @@ namespace Game.Scripts.Entities.Player
         
         private void Move()
         {
-            transform.position += new Vector3(_direction.x, 0f, 0f ) * (_moveSpeed * Time.deltaTime);
+            transform.position += Vector3.right * (_direction.x * _moveSpeed * Time.deltaTime);
+            
+            _flipper.Flip(_direction);
         }
         
         private void OnMove(Vector3 direction)
