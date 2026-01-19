@@ -24,12 +24,6 @@ namespace Game.Scripts.Entities.Enemy
 
         private void Start()
         {
-            if (_targetPoints == null || _targetPoints.Count == 0)
-            {
-                enabled = false;
-                return;
-            }
-
             _targetPositionIndex = 0;
             SetTargetPosition();
         }
