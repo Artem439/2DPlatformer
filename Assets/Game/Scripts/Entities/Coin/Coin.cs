@@ -5,26 +5,18 @@ namespace Game.Scripts.Entities.Coin
 {
     public class Coin : MonoBehaviour
     {
-        private bool _isTouched = false;
-    
         public event Action<Coin> Released;
-    
-        private void OnCollisionEnter2D(Collision2D collision)
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (collision.gameObject.TryGetComponent(out Player.Player _) == false)
+            if (other.TryGetComponent(out Player.Player _) == false)
                 return;
-        
-            if (_isTouched)
-                return;
-        
-            _isTouched = true;
             
             Release();
         }
 
         public void Reset(Vector2 position)
         {
-            _isTouched = false;
             transform.rotation = Quaternion.identity;
             transform.position = position;
         }

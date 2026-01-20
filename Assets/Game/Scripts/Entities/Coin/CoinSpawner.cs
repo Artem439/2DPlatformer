@@ -8,6 +8,8 @@ namespace Game.Scripts.Entities.Coin
         [SerializeField] private CoinsPool _coinsPool;
         [SerializeField] private List<Transform> _spawnPoints;
 
+        public int CountElements { get; private set; }
+        
         private void Start()
         {
             Spawner();
@@ -19,11 +21,11 @@ namespace Game.Scripts.Entities.Coin
             {
                 Vector3 spawnPosition = _spawnPoints[i].position;
             
-                Coin cube = _coinsPool.Get();
+                Coin coin = _coinsPool.Get();
             
-                cube.Reset(spawnPosition);
+                coin.Reset(spawnPosition);
             
-                cube.Released += OnReleased;
+                coin.Released += OnReleased;
             }
         }
 
