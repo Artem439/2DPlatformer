@@ -8,14 +8,17 @@ namespace Game.Scripts.Entities.Enemy
     public class EnemyMover : MonoBehaviour
     {
         [SerializeField] private List<Transform> _targetPoints;
+        [SerializeField] private EnemyAnimator _animator;
+        
         [SerializeField] private float _speed = 2f;
         [SerializeField] private float _reachDistance = 0.2f;
-
-        private int _targetPositionIndex;
+        
         private Vector3 _targetPosition;
         private Vector3 _direction;
-        
+
         private Flipper _flipper;
+        
+        private int _targetPositionIndex;
 
         private void Awake()
         {
@@ -45,6 +48,8 @@ namespace Game.Scripts.Entities.Enemy
             _direction = _targetPosition - transform.position;
             
             _flipper.Flip(_direction);
+            
+            _animator.SetSpeed(Mathf.Abs(_direction.x));
         }
 
         private void UpdateTarget()

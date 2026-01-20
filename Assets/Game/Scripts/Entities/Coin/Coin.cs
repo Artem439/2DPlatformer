@@ -1,20 +1,18 @@
 ﻿using System;
+using Game.Scripts.Interfaces;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Coin
 {
-    public class Coin : MonoBehaviour
+    public class Coin : MonoBehaviour, ICollectable
     {
         public event Action<Coin> Released;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void Collect()
         {
-            if (other.TryGetComponent(out Player.Player _) == false)
-                return;
-            
             Release();
         }
-
+        
         public void Reset(Vector2 position)
         {
             transform.rotation = Quaternion.identity;

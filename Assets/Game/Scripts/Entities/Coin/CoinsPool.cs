@@ -3,37 +3,34 @@ using UnityEngine.Pool;
 
 namespace Game.Scripts.Entities.Coin
 {
-    [RequireComponent(typeof(CoinSpawner))]
     public class CoinsPool : MonoBehaviour
     {
         [SerializeField] private Coin _coinPrefab;
-
-        private ObjectPool<Coin> _coinsPool;
+        [SerializeField] private int _capacity;
+        [SerializeField] private int _maxSize;
         
-        private CoinSpawner _coinSpawner;
+        private ObjectPool<Coin> _cubesPool;
     
         private void Awake()
         {
-            _coinSpawner = GetComponent<CoinSpawner>();
-            
-            _coinsPool = new ObjectPool<Coin>(
+            _cubesPool = new ObjectPool<Coin>(
                 createFunc: () => CreateObject(),
                 actionOnGet: (obj) => OnGetObject(obj),
                 actionOnRelease: (obj) => OnReleaseObject(obj),
                 actionOnDestroy: (obj) => Destroy(obj),
                 collectionCheck: true,
-                defaultCapacity: _coinSpawner.CountElements,
-                maxSize: _coinSpawner.CountElements);
+                defaultCapacity: _capacity,
+                maxSize: _maxSize);
         }
     
         public Coin Get()
         {
-            return _coinsPool.Get();
+            return _cubesPool.Get();
         }
 
         public void Release(Coin coin)
         {
-            _coinsPool.Release(coin);
+            _cubesPool.Release(coin);
         }
 
         private Coin CreateObject()

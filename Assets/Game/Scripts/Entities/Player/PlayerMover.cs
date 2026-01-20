@@ -8,6 +8,7 @@ namespace Game.Scripts.Entities.Player
     [RequireComponent(typeof(Flipper))]
     public class PlayerMover : MonoBehaviour
     {
+        [SerializeField] private PlayerAnimator _animator;
         [SerializeField] private float _moveSpeed = 3f;
         
         private InputReader _inputReader;
@@ -43,6 +44,8 @@ namespace Game.Scripts.Entities.Player
             transform.position += Vector3.right * (_direction.x * _moveSpeed * Time.deltaTime);
             
             _flipper.Flip(_direction);
+
+            _animator.SetSpeed(Mathf.Abs(_direction.x));
         }
         
         private void OnMove(Vector3 direction)

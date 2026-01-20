@@ -7,8 +7,6 @@ namespace Game.Scripts.Entities.Coin
     {
         [SerializeField] private CoinsPool _coinsPool;
         [SerializeField] private List<Transform> _spawnPoints;
-
-        public int CountElements { get; private set; }
         
         private void Start()
         {

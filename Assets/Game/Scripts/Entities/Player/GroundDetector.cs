@@ -4,9 +4,10 @@ namespace Game.Scripts.Entities.Player
 {
     public class GroundDetector : MonoBehaviour
     {
-        [SerializeField] private float _checkDistance = 0.1f;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private Transform _rayOrigin;
+        
+        [SerializeField] private float _checkDistance = 0.1f;
 
         public bool IsGrounded { get; private set; }
         
@@ -21,13 +22,5 @@ namespace Game.Scripts.Entities.Player
         
             IsGrounded = hit.collider != null;
         }
-        
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = IsGrounded ? Color.green : Color.red;
-            Gizmos.DrawLine(_rayOrigin.position, transform.position + Vector3.down * _checkDistance);
-        }
-#endif
     }
 }
