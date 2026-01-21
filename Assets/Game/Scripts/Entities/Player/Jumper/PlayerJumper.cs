@@ -34,7 +34,7 @@ namespace Game.Scripts.Entities.Player
         
         private void Jump()
         {
-            if ( _groundDetector.IsGrounded && Mathf.Abs(_rigidbody2D.velocity.y) < _jumpHeight)
+            if ( _groundDetector.IsGrounded() && Mathf.Abs(_rigidbody2D.velocity.y) < _jumpHeight)
                 _rigidbody2D.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
     }
