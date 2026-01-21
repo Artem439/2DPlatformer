@@ -10,10 +10,10 @@ namespace Game.Scripts.Entities.Coin
         
         private void Start()
         {
-            Spawner();
+            Spawn();
         }
         
-        private void Spawner()
+        private void Spawn()
         {
             for (int i = 0; i < _spawnPoints.Count; i++)
             {
