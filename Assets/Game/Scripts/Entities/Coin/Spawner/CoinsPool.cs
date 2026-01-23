@@ -9,11 +9,11 @@ namespace Game.Scripts.Entities.Coin
         [SerializeField] private int _capacity;
         [SerializeField] private int _maxSize;
         
-        private ObjectPool<Coin> _cubesPool;
+        private ObjectPool<Coin> _coinsPool;
     
         private void Awake()
         {
-            _cubesPool = new ObjectPool<Coin>(
+            _coinsPool = new ObjectPool<Coin>(
                 createFunc: () => CreateObject(),
                 actionOnGet: (obj) => OnGetObject(obj),
                 actionOnRelease: (obj) => OnReleaseObject(obj),
@@ -25,12 +25,12 @@ namespace Game.Scripts.Entities.Coin
     
         public Coin Get()
         {
-            return _cubesPool.Get();
+            return _coinsPool.Get();
         }
 
         public void Release(Coin coin)
         {
-            _cubesPool.Release(coin);
+            _coinsPool.Release(coin);
         }
 
         private Coin CreateObject()
