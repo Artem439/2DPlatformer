@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Scripts.Entities.Utils;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Game.Scripts.Entities.Enemy
     [RequireComponent(typeof(Flipper))]
     public class EnemyMover : MonoBehaviour
     {
+        [SerializeField] private PlayerDetector _playerDetector;
         [SerializeField] private List<Transform> _targetPoints;
         [SerializeField] private EnemyAnimator _animator;
         
@@ -19,16 +21,29 @@ namespace Game.Scripts.Entities.Enemy
         private Flipper _flipper;
         
         private int _targetPositionIndex;
+        private int _currentEntryCount;
 
         private void Awake()
         {
             _flipper = GetComponent<Flipper>();
         }
 
+        private void OnEnable()
+        {
+            _playerDetector.OnPlayerEntered += SetTargetPosition;
+            _playerDetector.OnPlayerOut += SetTargetPointPosition;
+        }
+
+        private void OnDisable()
+        {
+            _playerDetector.OnPlayerEntered -= SetTargetPosition;
+            _playerDetector.OnPlayerOut -= SetTargetPointPosition;
+        }
+        
         private void Start()
         {
             _targetPositionIndex = 0;
-            SetTargetPosition();
+            SetTargetPointPosition();
         }
 
         private void Update()
@@ -60,15 +75,24 @@ namespace Game.Scripts.Entities.Enemy
             if (Vector2.Distance(currentXY, targetXY) <= _reachDistance)
             {
                 _targetPositionIndex = (_targetPositionIndex + 1) % _targetPoints.Count;
-                SetTargetPosition();
+                SetTargetPointPosition();
             }
+        }
+
+        private void SetTargetPointPosition()
+        {
+            _currentEntryCount = Mathf.Max(0, _currentEntryCount - 1);
+            
+            Vector3 pointPosition = _targetPoints[_targetPositionIndex].position;
+
+            _targetPosition = new Vector3(pointPosition.x, transform.position.y, pointPosition.z);
         }
 
         private void SetTargetPosition()
         {
-            Vector3 pointPosition = _targetPoints[_targetPositionIndex].position;
-
-            _targetPosition = new Vector3(pointPosition.x, transform.position.y, pointPosition.z);
+            
+            
+            _currentEntryCount++;
         }
     }
 }
