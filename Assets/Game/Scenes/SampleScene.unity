@@ -7223,6 +7223,10 @@ GameObject:
   - component: {fileID: 1299824122}
   - component: {fileID: 1299824121}
   - component: {fileID: 1299824124}
+  - component: {fileID: 1299824127}
+  - component: {fileID: 1299824126}
+  - component: {fileID: 1299824125}
+  - component: {fileID: 1299824128}
   m_Layer: 0
   m_Name: EnemyPivot
   m_TagString: Untagged
@@ -7242,12 +7246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee208e1ab2c744c2ac4503e2277986d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPoints:
-  - {fileID: 839881453}
-  - {fileID: 1133567474}
   _animator: {fileID: 1774582860}
   _speed: 3
-  _reachDistance: 0.2
 --- !u!114 &1299824122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7308,7 +7308,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016994476, y: 0.16351247}
+  m_Offset: {x: -0.2950735, y: 0.20453632}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7319,8 +7319,61 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.475075, y: 2.5762982}
+  m_Size: {x: 8.9665165, y: 2.9590943}
   m_EdgeRadius: 0
+--- !u!114 &1299824125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299824120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e1236d3f8844148f622139230f1f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1299824126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299824120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a4140c508448bdbffc38d5a3f95ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDetector: {fileID: 1299824125}
+--- !u!114 &1299824127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299824120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4028b2eea8dd4483bd19490673038b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetPoints:
+  - {fileID: 839881453}
+  - {fileID: 1133567474}
+  _reachDistance: 0.2
+--- !u!114 &1299824128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299824120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7528d3f8dd4a10b82cdeaab3c48b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1389053027
 GameObject:
   m_ObjectHideFlags: 0

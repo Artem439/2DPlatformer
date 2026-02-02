@@ -5,14 +5,14 @@ namespace Game.Scripts.Entities.Enemy
 {
     public class PlayerDetector : MonoBehaviour
     {
-        public Action<Collider2D> OnPlayerEntered;
-        public Action<Collider2D> OnPlayerOut;
+        public Action<Transform> OnPlayerEntered;
+        public Action OnPlayerOut;
         
         public void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out Player.Player player))
             {
-                OnPlayerEntered?.Invoke(other);
+                OnPlayerEntered?.Invoke(player.transform);
             }
         }
 
@@ -20,7 +20,7 @@ namespace Game.Scripts.Entities.Enemy
         {
             if (other.TryGetComponent(out Player.Player _))
             {
-                OnPlayerOut?.Invoke(other);
+                OnPlayerOut?.Invoke();
             }
         }
     }
