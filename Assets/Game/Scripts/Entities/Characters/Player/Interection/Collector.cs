@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Entities.Player
 {
-    public class PlayerCollector : MonoBehaviour
+    public class Collector : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)
         {

@@ -6,7 +6,7 @@
         [RequireComponent(typeof(Flipper))]
         public class Mover : MonoBehaviour
         {
-            [SerializeField] private EnemyAnimator _animator;
+            [SerializeField] private Animator _animator;
             
             [SerializeField] private float _speed = 2f;
             

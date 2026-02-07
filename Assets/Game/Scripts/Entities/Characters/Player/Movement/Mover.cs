@@ -6,9 +6,9 @@ namespace Game.Scripts.Entities.Player
 {
     [RequireComponent(typeof(InputReader))]
     [RequireComponent(typeof(Flipper))]
-    public class PlayerMover : MonoBehaviour
+    public class Mover : MonoBehaviour
     {
-        [SerializeField] private PlayerAnimator _animator;
+        [SerializeField] private Animator _animator;
         [SerializeField] private float _moveSpeed = 3f;
         
         private InputReader _inputReader;

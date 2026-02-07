@@ -6,7 +6,7 @@ namespace Game.Scripts.Entities.Player
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(GroundDetector))]
     [RequireComponent(typeof(InputReader))]
-    public class PlayerJumper : MonoBehaviour
+    public class Jumper : MonoBehaviour
     {
         [SerializeField] private float _jumpForce = 5f;
         [SerializeField] private float _jumpHeight = 0.05f;
