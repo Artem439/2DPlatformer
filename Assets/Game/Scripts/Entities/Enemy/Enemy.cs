@@ -19,17 +19,19 @@ namespace Game.Scripts.Entities.Enemy
             _patroller = GetComponent<Patroller>();
             _pursuer = GetComponent<Pursuer>();
         }
-        
-        private void OnEnable()
-        {
-            _playerDetector.OnPlayerEntered += EnablePursuer;
-            _playerDetector.OnPlayerOut += EnablePatroller;
-        }
 
-        private void OnDisable()
+        private void Update()
         {
-            _playerDetector.OnPlayerEntered -= EnablePursuer;
-            _playerDetector.OnPlayerOut -= EnablePatroller;
+            if (_playerDetector.DetectPlayer() == null)
+            {
+                Debug.Log("Player is not detected");
+                EnablePatroller();
+            }
+            else
+            {
+                Debug.Log("Player is detected");
+                EnablePursuer(_playerDetector.DetectPlayer());
+            }
         }
 
         private void Start()

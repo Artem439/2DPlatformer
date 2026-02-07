@@ -1,29 +1,44 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Scripts.Entities.Enemy
 {
     public class PlayerDetector : MonoBehaviour
     {
-        public Action<Transform> OnPlayerEntered;
-        public Action OnPlayerOut;
+        [SerializeField] private LayerMask _playerLayer;
+        [SerializeField] private Transform _rayOrigin;
         
-        public void OnTriggerEnter2D(Collider2D other)
+        [SerializeField] private float _rayDistance = 1f;
+        
+        public Transform DetectPlayer()
         {
-            Debug.Log($"OnTriggerEnter2D {other.gameObject.name}");
-            if (other.TryGetComponent(out Player.Player player))
-            {
-                OnPlayerEntered?.Invoke(player.transform);
-            }
+            Vector2 direction = transform.right;
+            
+            RaycastHit2D hit = Physics2D.Raycast(_rayOrigin.position, direction, _rayDistance, _playerLayer);
+            
+            Debug.Log(hit.collider);
+            
+            if (hit.collider == null)
+                return null;
+            
+            if (hit.collider.TryGetComponent(out Player.Player player))
+                return player.transform;
+            else
+                return null;
+        }
+        
+        private void OnDrawGizmos()
+        {
+            Vector3 direction = transform.right;
+            
+            if (_rayOrigin == null)
+                return;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(
+                _rayOrigin.position,
+                _rayOrigin.position + direction * _rayDistance
+            );
         }
 
-        public void OnTriggerExit2D(Collider2D other)
-        {
-            Debug.Log($"OnTriggerExit2D {other.gameObject.name}");
-            if (other.TryGetComponent(out Player.Player _))
-            {
-                OnPlayerOut?.Invoke();
-            }
-        }
     }
 }
