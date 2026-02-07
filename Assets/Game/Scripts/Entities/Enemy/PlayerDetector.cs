@@ -15,8 +15,6 @@ namespace Game.Scripts.Entities.Enemy
             
             RaycastHit2D hit = Physics2D.Raycast(_rayOrigin.position, direction, _rayDistance, _playerLayer);
             
-            Debug.Log(hit.collider);
-            
             if (hit.collider == null)
                 return null;
             
@@ -25,20 +23,5 @@ namespace Game.Scripts.Entities.Enemy
             else
                 return null;
         }
-        
-        private void OnDrawGizmos()
-        {
-            Vector3 direction = transform.right;
-            
-            if (_rayOrigin == null)
-                return;
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(
-                _rayOrigin.position,
-                _rayOrigin.position + direction * _rayDistance
-            );
-        }
-
     }
 }

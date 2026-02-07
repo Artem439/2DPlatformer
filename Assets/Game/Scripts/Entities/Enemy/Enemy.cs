@@ -11,6 +11,8 @@ namespace Game.Scripts.Entities.Enemy
         
         private Patroller _patroller;
         private Pursuer _pursuer;
+        
+        private Transform _target;
 
         private void Awake()
         {
@@ -22,15 +24,15 @@ namespace Game.Scripts.Entities.Enemy
 
         private void Update()
         {
-            if (_playerDetector.DetectPlayer() == null)
+            _target = _playerDetector.DetectPlayer();
+            
+            if (_target == null)
             {
-                Debug.Log("Player is not detected");
                 EnablePatroller();
             }
             else
             {
-                Debug.Log("Player is detected");
-                EnablePursuer(_playerDetector.DetectPlayer());
+                EnablePursuer(_target);
             }
         }
 
