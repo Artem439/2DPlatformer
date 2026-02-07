@@ -10,6 +10,7 @@ namespace Game.Scripts.Entities.Enemy
         
         public void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log($"OnTriggerEnter2D {other.gameObject.name}");
             if (other.TryGetComponent(out Player.Player player))
             {
                 OnPlayerEntered?.Invoke(player.transform);
@@ -18,6 +19,7 @@ namespace Game.Scripts.Entities.Enemy
 
         public void OnTriggerExit2D(Collider2D other)
         {
+            Debug.Log($"OnTriggerExit2D {other.gameObject.name}");
             if (other.TryGetComponent(out Player.Player _))
             {
                 OnPlayerOut?.Invoke();
