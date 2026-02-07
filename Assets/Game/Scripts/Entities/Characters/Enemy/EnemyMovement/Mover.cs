@@ -6,7 +6,7 @@
         [RequireComponent(typeof(Flipper))]
         public class Mover : MonoBehaviour
         {
-            [SerializeField] private Animator _animator;
+            [SerializeField] private EnemyAnimator _enemyAnimator;
             
             [SerializeField] private float _speed = 2f;
             
@@ -30,7 +30,7 @@
                 
                 _flipper.Flip(_direction);
                 
-                _animator.SetSpeed(Mathf.Abs(_direction.x));
+                _enemyAnimator.SetSpeed(Mathf.Abs(_direction.x));
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Game.Scripts.Controls;
 using Game.Scripts.Entities.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Entities.Player
 {
@@ -8,7 +9,7 @@ namespace Game.Scripts.Entities.Player
     [RequireComponent(typeof(Flipper))]
     public class Mover : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
+        [FormerlySerializedAs("_animator")] [SerializeField] private PlayerAnimator _playerAnimator;
         [SerializeField] private float _moveSpeed = 3f;
         
         private InputReader _inputReader;
@@ -45,7 +46,7 @@ namespace Game.Scripts.Entities.Player
             
             _flipper.Flip(_direction);
 
-            _animator.SetSpeed(Mathf.Abs(_direction.x));
+            _playerAnimator.SetSpeed(Mathf.Abs(_direction.x));
         }
         
         private void OnMove(Vector3 direction)
