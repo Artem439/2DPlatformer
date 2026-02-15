@@ -19,7 +19,7 @@ namespace Game.Scripts.Entities.Coin
             transform.position = position;
         }
     
-        private void Release()
+        public void Release()
         {
             Released?.Invoke(this);
         }

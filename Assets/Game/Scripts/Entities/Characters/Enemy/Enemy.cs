@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Entities.Base;
+using Game.Scripts.Entities.Enemy.Attacker;
+using UnityEngine;
 
 namespace Game.Scripts.Entities.Enemy
 {
     [RequireComponent(typeof(PlayerDetector))]
+    [RequireComponent(typeof(EnemyAttacker))]
     [RequireComponent(typeof(Patroller))]
     [RequireComponent(typeof(Pursuer))]
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, IDamageable
     {
         private PlayerDetector _playerDetector;
+        private EnemyAttacker _enemyAttacker;
         
         private Patroller _patroller;
         private Pursuer _pursuer;
@@ -17,6 +21,7 @@ namespace Game.Scripts.Entities.Enemy
         private void Awake()
         {
             _playerDetector = GetComponent<PlayerDetector>();
+            _enemyAttacker = GetComponent<EnemyAttacker>();
             
             _patroller = GetComponent<Patroller>();
             _pursuer = GetComponent<Pursuer>();
@@ -33,6 +38,7 @@ namespace Game.Scripts.Entities.Enemy
             else
             {
                 EnablePursuer(_target);
+                _enemyAttacker.Attack();
             }
         }
 
@@ -40,6 +46,11 @@ namespace Game.Scripts.Entities.Enemy
         {
             _patroller.enabled = true;
             _pursuer.enabled = false;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            Debug.Log("Enemy take damage:  " + damage);
         }
 
         private void EnablePursuer(Transform other)
