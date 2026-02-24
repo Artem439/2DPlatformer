@@ -5,7 +5,7 @@ namespace Game.Scripts.Entities.Base
 {
     public abstract class PoolBase<T> : MonoBehaviour where T : Component
     {
-        [SerializeField] private T _potionPrefab;
+        [SerializeField] private T _entityPrefab;
         [SerializeField] private int _capacity;
         [SerializeField] private int _maxSize;
         
@@ -17,7 +17,7 @@ namespace Game.Scripts.Entities.Base
                 createFunc: () => CreateObject(),
                 actionOnGet: (obj) => OnGetObject(obj),
                 actionOnRelease: (obj) => OnReleaseObject(obj),
-                actionOnDestroy: (obj) => Destroy(obj),
+                actionOnDestroy: (obj) => Destroy(obj.gameObject),
                 collectionCheck: true,
                 defaultCapacity: _capacity,
                 maxSize: _maxSize);
@@ -35,7 +35,7 @@ namespace Game.Scripts.Entities.Base
 
         private T CreateObject()
         {
-            return Instantiate(_potionPrefab);
+            return Instantiate(_entityPrefab);
         }
 
         private void OnGetObject(T entity)
