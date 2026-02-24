@@ -6,10 +6,16 @@ namespace Game.Scripts.Entities.Player
     public class PlayerAnimator : AnimatorBase
     {
         private readonly int Speed = Animator.StringToHash("Speed");
+        private readonly int Attack = Animator.StringToHash("Attack");
 
         public void SetSpeed(float speed)
         {
             Animator.SetFloat(Speed, speed);
+        }
+        
+        public void PlayAttack()
+        {
+            Animator.SetTrigger(Attack);
         }
     }
 }

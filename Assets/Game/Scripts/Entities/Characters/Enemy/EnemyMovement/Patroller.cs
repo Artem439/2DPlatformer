@@ -3,23 +3,17 @@ using UnityEngine;
 
 namespace Game.Scripts.Entities.Enemy
 {
-    [RequireComponent(typeof(Mover))]
     public class Patroller : MonoBehaviour
     {
         [SerializeField] private List<Transform> _targetPoints;
         
         [SerializeField] private float _reachDistance = 0.2f;
         
-        private Mover _mover;
+        [SerializeField] private Mover _mover;
         
         private Vector3 _targetPosition;
         
         private int _targetPositionIndex;
-        
-        private void Awake()
-        {
-            _mover = GetComponent<Mover>();
-        }
 
         private void Start()
         {

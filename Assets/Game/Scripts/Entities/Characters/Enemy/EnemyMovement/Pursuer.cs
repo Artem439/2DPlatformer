@@ -2,19 +2,11 @@
 
 namespace Game.Scripts.Entities.Enemy
 {
-    [RequireComponent(typeof(Mover))]
     public class Pursuer : MonoBehaviour
     {
-        [SerializeField] private PlayerDetector _playerDetector;
-
-        private Mover _mover;
+        [SerializeField] private Mover _mover;
         
         private Transform _target;
-
-        private void Awake()
-        {
-            _mover = GetComponent<Mover>();
-        }
 
         private void Update()
         {

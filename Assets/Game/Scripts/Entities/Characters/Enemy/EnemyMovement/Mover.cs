@@ -3,21 +3,13 @@
 
     namespace Game.Scripts.Entities.Enemy
     {
-        [RequireComponent(typeof(Flipper))]
         public class Mover : MonoBehaviour
         {
             [SerializeField] private EnemyAnimator _enemyAnimator;
-            
+            [SerializeField] private Flipper _flipper;
             [SerializeField] private float _speed = 2f;
             
             private Vector3 _direction;
-
-            private Flipper _flipper;
-
-            private void Awake()
-            {
-                _flipper = GetComponent<Flipper>();
-            }
 
             public void Move(Vector3 direction)
             {

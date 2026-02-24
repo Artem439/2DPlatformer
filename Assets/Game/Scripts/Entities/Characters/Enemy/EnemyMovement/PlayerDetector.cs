@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Entities.Base;
 using UnityEngine;
+using System;
 
 namespace Game.Scripts.Entities.Enemy
 {
@@ -10,7 +11,12 @@ namespace Game.Scripts.Entities.Enemy
         
         [SerializeField] private float _rayDistance = 1f;
         
-        public Transform DetectPlayer()
+        [SerializeField] private Transform _attackPoint;
+        [SerializeField] private Vector2 _size;
+        
+        private readonly Collider2D[] _overlapResults = new Collider2D[10];
+        
+        public Transform TryGetDetectedPlayerTransform()
         {
             Vector2 direction = transform.right;
             
@@ -23,6 +29,25 @@ namespace Game.Scripts.Entities.Enemy
                 return player.transform;
             else
                 return null;
+        }
+        
+        public IDamageable TryGetDamageable()
+        {
+            Vector2 center = _attackPoint.position;
+            Vector2 pointA = center - _size / 2;
+            Vector2 pointB = center + _size / 2;
+
+            int hitCount = Physics2D.OverlapAreaNonAlloc(pointA, pointB, _overlapResults, _playerLayer);
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                if (_overlapResults[i] != null && _overlapResults[i].TryGetComponent(out IDamageable damageable))
+                {
+                    return damageable;
+                }
+            }
+            
+            return null;
         }
     }
 }

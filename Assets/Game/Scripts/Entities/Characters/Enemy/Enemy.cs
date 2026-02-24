@@ -4,32 +4,19 @@ using UnityEngine;
 
 namespace Game.Scripts.Entities.Enemy
 {
-    [RequireComponent(typeof(PlayerDetector))]
-    [RequireComponent(typeof(EnemyAttacker))]
-    [RequireComponent(typeof(Patroller))]
-    [RequireComponent(typeof(Pursuer))]
     public class Enemy : MonoBehaviour, IDamageable
     {
-        private PlayerDetector _playerDetector;
-        private EnemyAttacker _enemyAttacker;
+        [SerializeField] private PlayerDetector _playerDetector;
+        [SerializeField] private EnemyAttacker _enemyAttacker;
         
-        private Patroller _patroller;
-        private Pursuer _pursuer;
+        [SerializeField] private Patroller _patroller;
+        [SerializeField] private Pursuer _pursuer;
         
         private Transform _target;
 
-        private void Awake()
-        {
-            _playerDetector = GetComponent<PlayerDetector>();
-            _enemyAttacker = GetComponent<EnemyAttacker>();
-            
-            _patroller = GetComponent<Patroller>();
-            _pursuer = GetComponent<Pursuer>();
-        }
-
         private void Update()
         {
-            _target = _playerDetector.DetectPlayer();
+            _target = _playerDetector.TryGetDetectedPlayerTransform();
             
             if (_target == null)
             {
@@ -38,7 +25,7 @@ namespace Game.Scripts.Entities.Enemy
             else
             {
                 EnablePursuer(_target);
-                _enemyAttacker.Attack();
+                _enemyAttacker.TryStartAttack();
             }
         }
 
@@ -48,7 +35,7 @@ namespace Game.Scripts.Entities.Enemy
             _pursuer.enabled = false;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage)    
         {
             Debug.Log("Enemy take damage:  " + damage);
         }
