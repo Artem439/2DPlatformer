@@ -1,4 +1,4 @@
-﻿using Game.Scripts.Interfaces;
+﻿using Game.Scripts.Entities.Base;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Player

@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Interfaces
+﻿namespace Game.Scripts.Entities.Base
 {
     public interface ICollectable
     {
