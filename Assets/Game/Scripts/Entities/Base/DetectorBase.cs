@@ -1,13 +1,12 @@
-﻿using Game.Scripts.Entities.Base;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game.Scripts.Entities.Player.Attacker
+namespace Game.Scripts.Entities.Base
 {
-    public class EnemyDetector : MonoBehaviour
+    public class DetectorBase : MonoBehaviour
     {
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private Vector2 _size;
-        [SerializeField] private LayerMask _layer;
+        [SerializeField] protected LayerMask _layer;
         
         private readonly Collider2D[] _overlapResults = new Collider2D[10];
         

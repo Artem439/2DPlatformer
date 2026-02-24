@@ -4,21 +4,21 @@ using UnityEngine;
 
 namespace Game.Scripts.Entities.Player.Attacker
 {
-    [RequireComponent(typeof(EnemyDetector))]
+    [RequireComponent(typeof(DetectorBase))]
     [RequireComponent(typeof(InputReader))]
     public class PlayerAttacker : MonoBehaviour
     {
         [SerializeField] private PlayerAnimator _playerAnimator;
         [SerializeField] private int _damage;
 
-        private EnemyDetector _enemyDetector;
+        private DetectorBase _enemyDetector;
         private InputReader _inputReader;
         
         private IDamageable _enemy;
         
         private void Awake()
         {
-            _enemyDetector = GetComponent<EnemyDetector>();
+            _enemyDetector = GetComponent<DetectorBase>();
             _inputReader = GetComponent<InputReader>();
         }
         
