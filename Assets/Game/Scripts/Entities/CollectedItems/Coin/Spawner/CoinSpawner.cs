@@ -1,37 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using Game.Scripts.Entities.Base;
 
 namespace Game.Scripts.Entities.Coin
 {
-    public class CoinSpawner : MonoBehaviour
+    public class CoinSpawner : SpawnerBase<Coin>
     {
-        [SerializeField] private CoinsPool _coinsPool;
-        [SerializeField] private List<Transform> _spawnPoints;
-        
-        private void Start()
-        {
-            Spawn();
-        }
-        
-        private void Spawn()
-        {
-            for (int i = 0; i < _spawnPoints.Count; i++)
-            {
-                Vector3 spawnPosition = _spawnPoints[i].position;
-            
-                Coin coin = _coinsPool.Get();
-            
-                coin.Reset(spawnPosition);
-            
-                coin.Released += OnReleased;
-            }
-        }
-
-        private void OnReleased(Coin coin)
-        {
-            coin.Released -= OnReleased;
-        
-            _coinsPool.Release(coin);
-        }
     }
 }

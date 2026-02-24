@@ -33,17 +33,17 @@ namespace Game.Scripts.Entities.Base
             _pool.Release(entity);
         }
 
-        protected virtual T CreateObject()
+        private T CreateObject()
         {
             return Instantiate(_potionPrefab);
         }
 
-        protected virtual void OnGetObject(T entity)
+        private void OnGetObject(T entity)
         {
             entity.gameObject.SetActive(true);
         }
     
-        protected virtual void OnReleaseObject(T entity)
+        private void OnReleaseObject(T entity)
         {
             entity.gameObject.SetActive(false);
         }
