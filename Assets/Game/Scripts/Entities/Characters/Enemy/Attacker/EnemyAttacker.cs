@@ -49,10 +49,8 @@ namespace Game.Scripts.Entities.Enemy.Attacker
             if (_damageAppliedThisAttack)
                 return;
 
-            if (_playerDetector == null)
-                return;
-
             _player = _playerDetector.TryGetDamageable();
+            
             if (_player == null)
                 return;
 
