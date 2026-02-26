@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Entities.Base;
+﻿using System;
+using Game.Scripts.Entities.Base;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Player
@@ -7,6 +8,9 @@ namespace Game.Scripts.Entities.Player
     {
         private readonly int Speed = Animator.StringToHash("Speed");
         private readonly int Attack = Animator.StringToHash("Attack");
+        private readonly int Death = Animator.StringToHash("Death");
+        
+        public event Action AttackHitFrameReached;
 
         public void SetSpeed(float speed)
         {
@@ -16,6 +20,16 @@ namespace Game.Scripts.Entities.Player
         public void PlayAttack()
         {
             Animator.SetTrigger(Attack);
+        }
+
+        public void PlayDeath()
+        {
+            Animator.SetTrigger(Death);
+        }
+        
+        public void AttackHitFrame()
+        {
+            AttackHitFrameReached?.Invoke();
         }
     }
 }

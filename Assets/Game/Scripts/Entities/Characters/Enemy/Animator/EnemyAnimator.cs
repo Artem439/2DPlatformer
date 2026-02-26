@@ -8,6 +8,7 @@ namespace Game.Scripts.Entities.Enemy
     {
         private readonly int Speed = Animator.StringToHash("Speed");
         private readonly int Attack = Animator.StringToHash("Attack");
+        private readonly int Death = Animator.StringToHash("Death");
 
         public event Action AttackHitFrameReached;
         
@@ -24,6 +25,11 @@ namespace Game.Scripts.Entities.Enemy
         public void AttackHitFrame()
         {
             AttackHitFrameReached?.Invoke();
+        }
+        
+        public void PlayDeath()
+        {
+            Animator.SetTrigger(Death);
         }
     }
 }

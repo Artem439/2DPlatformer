@@ -25,19 +25,27 @@ namespace Game.Scripts.Entities.Player.Attacker
         private void OnEnable()
         {
             _inputReader.AttackButtonClicked += Attack;
+            _playerAnimator.AttackHitFrameReached += DealDamage;
         }
 
         private void OnDisable()
         {
             _inputReader.AttackButtonClicked -= Attack;
+            _playerAnimator.AttackHitFrameReached -= DealDamage;
         }
         
         private void Attack()
         {
-            _enemy = _enemyDetector.TryGetDamageable();
-            
             _playerAnimator.PlayAttack();
 
+            if (_enemy == null)
+                return;
+        }
+
+        private void DealDamage()
+        {
+            _enemy = _enemyDetector.TryGetDamageable();
+            
             if (_enemy == null)
                 return;
             
