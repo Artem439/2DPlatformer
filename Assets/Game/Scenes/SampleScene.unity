@@ -7258,6 +7258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f7e2204d814ecfbddf2beb29fa9f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 100
+  _playerAnimator: {fileID: 1216809357}
+  _inputReader: {fileID: 1216809350}
 --- !u!114 &1216809359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7373,7 +7376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimator: {fileID: 1774582860}
-  _damage: 12
+  _damage: 50
   _playerDetector: {fileID: 1299824124}
   _attackCooldown: 0.6
 --- !u!114 &1299824126
@@ -15249,10 +15252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102698d1ed8c462ebe923a9c32a7fdb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 100
   _playerDetector: {fileID: 1299824124}
   _enemyAttacker: {fileID: 1299824125}
   _patroller: {fileID: 1299824126}
   _pursuer: {fileID: 1299824127}
+  _enemyAnimator: {fileID: 1774582860}
+  _mover: {fileID: 1299824128}
 --- !u!1 &1906632593
 GameObject:
   m_ObjectHideFlags: 0
