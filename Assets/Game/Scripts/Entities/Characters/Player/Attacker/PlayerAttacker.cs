@@ -15,6 +15,12 @@ namespace Game.Scripts.Entities.Player.Attacker
         private InputReader _inputReader;
         
         private IDamageable _enemy;
+
+        private void OnValidate()
+        {
+            if (_damage <= 0)
+                _damage = 1;
+        }
         
         private void Awake()
         {

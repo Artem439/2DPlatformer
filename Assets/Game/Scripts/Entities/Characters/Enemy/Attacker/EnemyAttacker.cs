@@ -16,6 +16,12 @@ namespace Game.Scripts.Entities.Enemy.Attacker
 
         private float _nextAttackTime;
         private bool _damageAppliedThisAttack;
+        
+        private void OnValidate()
+        {
+            if (_damage <= 0)
+                _damage = 1;
+        }
 
         private void OnEnable()
         {

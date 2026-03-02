@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Controls;
+using Game.Scripts.Entities.Base;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Player
@@ -8,13 +9,11 @@ namespace Game.Scripts.Entities.Player
     public class Player : MonoBehaviour
     {
         [SerializeField] private PlayerAnimator _playerAnimator;
-        [SerializeField] private PlayerHealth _playerHealth;
-        [SerializeField] private  InputReader _inputReader;
+        [SerializeField] private HealthBase _playerHealth;
+        [SerializeField] private InputReader _inputReader;
 
         private Rigidbody2D _rigidbody2D;
         private Collider2D[] _colliders;
-        
-        private bool _isDead;
         
         private void Awake()
         {
@@ -24,15 +23,15 @@ namespace Game.Scripts.Entities.Player
 
         private void OnEnable()
         {
-            _playerHealth.OnPlayerDeath += PlayerDeath;
+            _playerHealth.CharacterDeath += OnPlayerDeath;
         }
 
         private void OnDisable()
         {
-            _playerHealth.OnPlayerDeath -= PlayerDeath;
+            _playerHealth.CharacterDeath -= OnPlayerDeath;
         }
 
-        private void PlayerDeath()
+        private void OnPlayerDeath()
         {
             enabled = false;
             

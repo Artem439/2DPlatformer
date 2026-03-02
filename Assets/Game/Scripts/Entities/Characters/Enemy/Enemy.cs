@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Entities.Enemy.Attacker;
+﻿using Game.Scripts.Entities.Base;
+using Game.Scripts.Entities.Enemy.Attacker;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Enemy
@@ -16,7 +17,7 @@ namespace Game.Scripts.Entities.Enemy
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private Mover _mover;
         
-        [SerializeField] private EnemyHealth _enemyHealth;
+        [SerializeField] private HealthBase _enemyHealth;
         
         private Rigidbody2D _rigidbody2D;
         private Collider2D[] _colliders;
@@ -32,12 +33,12 @@ namespace Game.Scripts.Entities.Enemy
         
         private void OnEnable()
         {
-            _enemyHealth.OnEnemyDeath += EnemyDeath;
+            _enemyHealth.CharacterDeath += OnCharacterDeath;
         }
 
         private void OnDisable()
         {
-            _enemyHealth.OnEnemyDeath -= EnemyDeath;
+            _enemyHealth.CharacterDeath -= OnCharacterDeath;
         }
 
         private void Start()
@@ -61,7 +62,7 @@ namespace Game.Scripts.Entities.Enemy
             }
         }
 
-        private void EnemyDeath()
+        private void OnCharacterDeath()
         {
             enabled = false;
             
