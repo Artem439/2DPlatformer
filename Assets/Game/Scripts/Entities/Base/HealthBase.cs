@@ -5,7 +5,7 @@ namespace Game.Scripts.Entities.Base
 {
     public class HealthBase : MonoBehaviour, IDamageable
     {
-        [Min(1)] private float _maxHealth;
+        [SerializeField][Min(1)] private float _maxHealth;
         
         private float _currentHealth;
         
@@ -24,12 +24,13 @@ namespace Game.Scripts.Entities.Base
 
         public void TakeDamage(float damage)
         {
-            if (damage > _currentHealth)
-                _currentHealth = 0;
-            else
-                _currentHealth -= damage;
+            if (damage <= 0) 
+                return;
+
+            _currentHealth -= damage;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
             
-            if (_maxHealth <= 0)
+            if (_currentHealth <= 0)
                 Death?.Invoke();
         }
     }
