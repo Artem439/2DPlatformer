@@ -5,17 +5,11 @@ namespace Game.Scripts.Entities.Base
 {
     public class HealthBase : MonoBehaviour, IDamageable
     {
-        [SerializeField][Min(1)] private float _maxHealth;
+        [SerializeField] [Min(1)] private float _maxHealth;
         
         private float _currentHealth;
         
         public event Action Death;
-
-        private void OnValidate()
-        {
-            if (_maxHealth <= 0)
-                _maxHealth = 1;
-        }
 
         private void Start()
         {
