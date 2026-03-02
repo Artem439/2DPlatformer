@@ -23,12 +23,12 @@ namespace Game.Scripts.Entities.Player
 
         private void OnEnable()
         {
-            _playerHealth.CharacterDeath += OnPlayerDeath;
+            _playerHealth.Death += OnPlayerDeath;
         }
 
         private void OnDisable()
         {
-            _playerHealth.CharacterDeath -= OnPlayerDeath;
+            _playerHealth.Death -= OnPlayerDeath;
         }
 
         private void OnPlayerDeath()

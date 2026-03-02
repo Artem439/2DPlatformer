@@ -5,22 +5,32 @@ namespace Game.Scripts.Entities.Base
 {
     public class HealthBase : MonoBehaviour, IDamageable
     {
-        [SerializeField] private float _health;
+        [Min(1)] private float _maxHealth;
         
-        public event Action CharacterDeath;
+        private float _currentHealth;
+        
+        public event Action Death;
 
         private void OnValidate()
         {
-            if (_health <= 0)
-                _health = 1;
+            if (_maxHealth <= 0)
+                _maxHealth = 1;
+        }
+
+        private void Start()
+        {
+            _currentHealth = _maxHealth;
         }
 
         public void TakeDamage(float damage)
         {
-            _health -= damage;
+            if (damage > _currentHealth)
+                _currentHealth = 0;
+            else
+                _currentHealth -= damage;
             
-            if (_health <= 0)
-                CharacterDeath?.Invoke();
+            if (_maxHealth <= 0)
+                Death?.Invoke();
         }
     }
 }

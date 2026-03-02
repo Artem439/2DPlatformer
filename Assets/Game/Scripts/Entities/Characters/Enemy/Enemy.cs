@@ -33,12 +33,12 @@ namespace Game.Scripts.Entities.Enemy
         
         private void OnEnable()
         {
-            _enemyHealth.CharacterDeath += OnCharacterDeath;
+            _enemyHealth.Death += OnDeath;
         }
 
         private void OnDisable()
         {
-            _enemyHealth.CharacterDeath -= OnCharacterDeath;
+            _enemyHealth.Death -= OnDeath;
         }
 
         private void Start()
@@ -62,7 +62,7 @@ namespace Game.Scripts.Entities.Enemy
             }
         }
 
-        private void OnCharacterDeath()
+        private void OnDeath()
         {
             enabled = false;
             
