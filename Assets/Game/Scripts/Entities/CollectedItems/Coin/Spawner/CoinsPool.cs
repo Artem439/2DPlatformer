@@ -3,7 +3,7 @@ using Game.Scripts.Entities.CollectedItems;
 
 namespace Game.Scripts.Entities.Coin
 {
-    public class CoinsPool : PoolBase<CollectibleItem>
+    public class CoinsPool : PoolBase<CollectableItem>
     {
     }
 }

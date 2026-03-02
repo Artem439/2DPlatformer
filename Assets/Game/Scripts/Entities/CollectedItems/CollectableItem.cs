@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game.Scripts.Entities.CollectedItems
 {
-    public class CollectibleItem : MonoBehaviour, ICollectable, ISpawnable<CollectibleItem>
+    public class CollectableItem : MonoBehaviour, ICollectable, ISpawnable<CollectableItem>
     {
-        public event Action<CollectibleItem> Released;
+        public event Action<CollectableItem> Released;
 
         public void Collect()
         {

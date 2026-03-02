@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.Entities.HealPotion
 {
-    public class HealPotion : CollectibleItem
+    public class HealPotion : CollectableItem
     {
     }
 }

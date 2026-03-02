@@ -3,7 +3,7 @@ using Game.Scripts.Entities.CollectedItems;
 
 namespace Game.Scripts.Entities.HealPotion
 {
-    public class PotionsPool : PoolBase<CollectibleItem>
+    public class PotionsPool : PoolBase<CollectableItem>
     {
     }
 }

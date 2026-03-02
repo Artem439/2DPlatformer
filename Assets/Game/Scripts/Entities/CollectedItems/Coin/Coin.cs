@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.Entities.Coin
 {
-    public class Coin : CollectibleItem
+    public class Coin : CollectableItem
     {
     }
 }
