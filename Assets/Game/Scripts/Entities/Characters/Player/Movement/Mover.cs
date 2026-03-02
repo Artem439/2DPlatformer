@@ -9,7 +9,7 @@ namespace Game.Scripts.Entities.Player
     [RequireComponent(typeof(Flipper))]
     public class Mover : MonoBehaviour
     {
-        [FormerlySerializedAs("_animator")] [SerializeField] private PlayerAnimator _playerAnimator;
+        [SerializeField] private PlayerAnimator _playerAnimator;
         [SerializeField] private float _moveSpeed = 3f;
         
         private InputReader _inputReader;

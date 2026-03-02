@@ -10,9 +10,9 @@ namespace Game.Scripts.Entities.Enemy.Attacker
         
         [SerializeField] private PlayerDetector _playerDetector;
         
-        private IDamageable _player;
-        
         [SerializeField] private float _attackCooldown = 0.6f;
+        
+        private IDamageable _player;
 
         private float _nextAttackTime;
         private bool _damageAppliedThisAttack;

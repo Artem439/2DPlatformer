@@ -1,40 +1,47 @@
 ﻿using Game.Scripts.Controls;
-using Game.Scripts.Entities.Base;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Player
 {
-    public class Player : MonoBehaviour, IDamageable
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Collider2D))]
+    public class Player : MonoBehaviour
     {
-        [SerializeField] private  float _health;
         [SerializeField] private PlayerAnimator _playerAnimator;
-        
+        [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private  InputReader _inputReader;
+
+        private Rigidbody2D _rigidbody2D;
+        private Collider2D[] _colliders;
         
         private bool _isDead;
         
-        public void TakeDamage(float damage)
+        private void Awake()
         {
-            if (_isDead)
-                return;
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _colliders = GetComponentsInChildren<Collider2D>();
+        }
 
-            _health -= damage;
+        private void OnEnable()
+        {
+            _playerHealth.OnPlayerDeath += PlayerDeath;
+        }
 
-            if (_health > 0)
-                return;
+        private void OnDisable()
+        {
+            _playerHealth.OnPlayerDeath -= PlayerDeath;
+        }
 
-            _isDead = true;
-
+        private void PlayerDeath()
+        {
             enabled = false;
             
             _inputReader.enabled = false;
 
-            foreach (Collider2D collider in GetComponentsInChildren<Collider2D>())
+            foreach (Collider2D collider in _colliders)
                 collider.enabled = false;
-
-            Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
             
-            rigidbody2D.simulated = false;
+            _rigidbody2D.simulated = false;
 
             _playerAnimator.PlayDeath();
         }

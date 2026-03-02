@@ -1,25 +1,44 @@
-﻿using System;
-using Game.Scripts.Entities.Base;
-using Game.Scripts.Entities.Enemy.Attacker;
+﻿using Game.Scripts.Entities.Enemy.Attacker;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.Enemy
 {
-    public class Enemy : MonoBehaviour, IDamageable
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Collider2D))]
+    public class Enemy : MonoBehaviour
     {
-        [SerializeField] private  float _health;
-        
         [SerializeField] private PlayerDetector _playerDetector;
         [SerializeField] private EnemyAttacker _enemyAttacker;
-        
+
         [SerializeField] private Patroller _patroller;
         [SerializeField] private Pursuer _pursuer;
-        
+
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private Mover _mover;
         
+        [SerializeField] private EnemyHealth _enemyHealth;
+        
+        private Rigidbody2D _rigidbody2D;
+        private Collider2D[] _colliders;
+
         private Transform _target;
         private bool _isDead;
+        
+        private void Awake()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _colliders = GetComponentsInChildren<Collider2D>();
+        }
+        
+        private void OnEnable()
+        {
+            _enemyHealth.OnEnemyDeath += EnemyDeath;
+        }
+
+        private void OnDisable()
+        {
+            _enemyHealth.OnEnemyDeath -= EnemyDeath;
+        }
 
         private void Start()
         {
@@ -30,7 +49,7 @@ namespace Game.Scripts.Entities.Enemy
         private void Update()
         {
             _target = _playerDetector.TryGetDetectedPlayerTransform();
-            
+
             if (_target == null)
             {
                 EnablePatroller();
@@ -42,18 +61,8 @@ namespace Game.Scripts.Entities.Enemy
             }
         }
 
-        public void TakeDamage(float damage)
+        private void EnemyDeath()
         {
-            if (_isDead)
-                return;
-
-            _health -= damage;
-
-            if (_health > 0)
-                return;
-
-            _isDead = true;
-
             enabled = false;
             
             _playerDetector.enabled = false;
@@ -61,14 +70,12 @@ namespace Game.Scripts.Entities.Enemy
             _patroller.enabled = false;
             _pursuer.enabled = false;
             _mover.enabled = false;
-
-            foreach (Collider2D collider in GetComponentsInChildren<Collider2D>())
-                collider.enabled = false;
-
-            Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
             
-            rigidbody2D.simulated = false;
-
+            foreach (Collider2D collider in _colliders)
+                collider.enabled = false;
+            
+            _rigidbody2D.simulated = false;
+            
             _enemyAnimator.PlayDeath();
         }
 

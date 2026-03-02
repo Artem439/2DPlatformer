@@ -28,5 +28,10 @@ namespace Game.Scripts.Controls
             if (Input.GetKeyDown(MouseLeftButton))
                 AttackButtonClicked?.Invoke();
         }
+
+        public void Disable()
+        {
+            enabled = false;
+        }
     }
 }

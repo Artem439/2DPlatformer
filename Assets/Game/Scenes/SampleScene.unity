@@ -6994,6 +6994,7 @@ GameObject:
   - component: {fileID: 1216809358}
   - component: {fileID: 1216809359}
   - component: {fileID: 1216809360}
+  - component: {fileID: 1216809361}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -7258,8 +7259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f7e2204d814ecfbddf2beb29fa9f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
   _playerAnimator: {fileID: 1216809357}
+  _playerHealth: {fileID: 1216809361}
   _inputReader: {fileID: 1216809350}
 --- !u!114 &1216809359
 MonoBehaviour:
@@ -7292,6 +7293,19 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1216809361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216809343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e3c6ad80424db493a1b86464c56831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
 --- !u!1 &1299824120
 GameObject:
   m_ObjectHideFlags: 0
@@ -15071,6 +15085,7 @@ GameObject:
   - component: {fileID: 1774582859}
   - component: {fileID: 1774582860}
   - component: {fileID: 1774582861}
+  - component: {fileID: 1774582862}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -15252,13 +15267,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102698d1ed8c462ebe923a9c32a7fdb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
   _playerDetector: {fileID: 1299824124}
   _enemyAttacker: {fileID: 1299824125}
   _patroller: {fileID: 1299824126}
   _pursuer: {fileID: 1299824127}
   _enemyAnimator: {fileID: 1774582860}
   _mover: {fileID: 1299824128}
+  _enemyHealth: {fileID: 1774582862}
+--- !u!114 &1774582862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774582853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbc12cff7b14da38cbcc30d23d72416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
 --- !u!1 &1906632593
 GameObject:
   m_ObjectHideFlags: 0

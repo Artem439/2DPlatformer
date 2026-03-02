@@ -11,7 +11,7 @@ namespace Game.Scripts.Entities.Base
         
         private ObjectPool<T> _pool;
     
-        protected virtual void Awake()
+        private void Awake()
         {
             _pool = new ObjectPool<T>(
                 createFunc: () => CreateObject(),

@@ -19,7 +19,7 @@ namespace Game.Scripts.Entities.CollectedItems
             transform.position = position;
         }
     
-        public void Release()
+        private void Release()
         {
             Released?.Invoke(this);
         }

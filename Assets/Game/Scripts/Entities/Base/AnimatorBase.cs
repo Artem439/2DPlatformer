@@ -7,7 +7,7 @@ namespace Game.Scripts.Entities.Base
     {
         protected Animator Animator;
 
-        protected virtual void Awake()
+        private void Awake()
         {
             Animator = GetComponent<Animator>();
         }

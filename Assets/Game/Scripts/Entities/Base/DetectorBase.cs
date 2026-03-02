@@ -4,6 +4,8 @@ namespace Game.Scripts.Entities.Base
 {
     public class DetectorBase : MonoBehaviour
     {
+        private const int SizeDivider = 2;
+        
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private Vector2 _size;
         [SerializeField] protected LayerMask _layer;
@@ -13,8 +15,8 @@ namespace Game.Scripts.Entities.Base
         public IDamageable TryGetDamageable()
         {
             Vector2 center = _attackPoint.position;
-            Vector2 pointA = center - _size / 2;
-            Vector2 pointB = center + _size / 2;
+            Vector2 pointA = center - _size / SizeDivider;
+            Vector2 pointB = center + _size / SizeDivider;
 
             int hitCount = Physics2D.OverlapAreaNonAlloc(pointA, pointB, _overlapResults, _layer);
 

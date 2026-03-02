@@ -37,9 +37,6 @@ namespace Game.Scripts.Entities.Player.Attacker
         private void Attack()
         {
             _playerAnimator.PlayAttack();
-
-            if (_enemy == null)
-                return;
         }
 
         private void DealDamage()
