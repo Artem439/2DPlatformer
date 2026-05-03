@@ -1,16 +1,17 @@
-﻿using Game.Scripts.Entities.Base;
+﻿using Game.Scripts.Entities.Player;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.CollectedItems.HealPotion
 {
     public class HealPotion : CollectableItem
     {
-        [SerializeField] private HealthBase _health;
         [SerializeField] private float _healAmount;
-    
-        public void Collect()
+        
+        public override void Collect(Collector collector)
         {
-            _health.Heal(_healAmount);
+            collector.Health.Heal(_healAmount);
+
+            OnReleased();
         }
     }
 }

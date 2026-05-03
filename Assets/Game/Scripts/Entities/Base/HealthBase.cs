@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Entities.Base
 {
-    public class HealthBase : MonoBehaviour, IDamageable
+    public class HealthBase : MonoBehaviour, IDamageable, IHealable
     {
         [SerializeField] [Min(1)] private float _maxHealth;
 
@@ -25,7 +25,7 @@ namespace Game.Scripts.Entities.Base
             _currentHealth -= damage;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
 
-            if (_currentHealth < 0)
+            if (_currentHealth <= 0)
             {
                 Death?.Invoke();
                 _currentHealth = 0;
@@ -34,12 +34,12 @@ namespace Game.Scripts.Entities.Base
             HealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
 
-        public void Heal(float heal)
+        public void Heal(float healAmount)
         {
-            if (heal <= 0)
+            if (healAmount <= 0)
                 return;
 
-            _currentHealth = Math.Min(_currentHealth + heal, _maxHealth);
+            _currentHealth = Math.Min(_currentHealth + healAmount, _maxHealth);
             HealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
     }

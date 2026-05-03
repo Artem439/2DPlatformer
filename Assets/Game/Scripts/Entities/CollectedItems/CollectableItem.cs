@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Scripts.Entities.Base;
+using Game.Scripts.Entities.Player;
 using UnityEngine;
 
 namespace Game.Scripts.Entities.CollectedItems
@@ -8,7 +9,7 @@ namespace Game.Scripts.Entities.CollectedItems
     {
         public event Action<CollectableItem> Released;
 
-        public void Collect()
+        public virtual void Collect(Collector collector)
         {
             Release();
         }
@@ -20,6 +21,11 @@ namespace Game.Scripts.Entities.CollectedItems
         }
     
         private void Release()
+        {
+            Released?.Invoke(this);
+        }
+        
+        protected void OnReleased()
         {
             Released?.Invoke(this);
         }
