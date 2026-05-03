@@ -1,7 +1,7 @@
 ﻿using Game.Scripts.Entities.Base;
 using UnityEngine;
 
-namespace Game.Scripts.Entities.Player
+namespace Game.Scripts.Entities.Characters.Player.Interaction
 {
     public class Collector : MonoBehaviour
     {
