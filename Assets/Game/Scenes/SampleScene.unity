@@ -7783,7 +7783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 1216809357}
-  _damage: 100
+  _damage: 60
 --- !u!114 &1216809360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16160,6 +16160,7 @@ MonoBehaviour:
   _enemyAnimator: {fileID: 1774582860}
   _mover: {fileID: 1299824128}
   _enemyHealth: {fileID: 1774582863}
+  _healthBar: {fileID: 1925773770}
 --- !u!114 &1774582863
 MonoBehaviour:
   m_ObjectHideFlags: 0

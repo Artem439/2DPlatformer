@@ -19,6 +19,8 @@ namespace Game.Scripts.Entities.Enemy
         
         [SerializeField] private HealthBase _enemyHealth;
         
+        [SerializeField] private Canvas _healthBar;
+        
         private Rigidbody2D _rigidbody2D;
         private Collider2D[] _colliders;
 
@@ -71,6 +73,8 @@ namespace Game.Scripts.Entities.Enemy
             _patroller.enabled = false;
             _pursuer.enabled = false;
             _mover.enabled = false;
+            
+            _healthBar.enabled = false;
             
             foreach (Collider2D collider in _colliders)
                 collider.enabled = false;
