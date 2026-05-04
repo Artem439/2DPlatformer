@@ -11,18 +11,13 @@ namespace Game.Scripts.Entities.CollectedItems
 
         public virtual void Collect(Collector collector)
         {
-            Release();
+            OnReleased();
         }
         
         public void Reset(Vector2 position)
         {
             transform.rotation = Quaternion.identity;
             transform.position = position;
-        }
-    
-        private void Release()
-        {
-            Released?.Invoke(this);
         }
         
         protected void OnReleased()
