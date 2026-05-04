@@ -6,6 +6,7 @@ namespace Game.Scripts.Controls
     public class InputReader : MonoBehaviour
     {
         private const KeyCode JumpButton = KeyCode.Space;
+        private const KeyCode AbilityButton = KeyCode.E;
         private const KeyCode MouseLeftButton = KeyCode.Mouse0;
         
         private const string Horizontal = "Horizontal";
@@ -15,6 +16,7 @@ namespace Game.Scripts.Controls
         public event Action<Vector3> Moved;
         public event Action JumpButtonClicked;
         public event Action AttackButtonClicked;
+        public event Action AbilityButtonClicked;
 
         private void Update()
         {
@@ -27,6 +29,9 @@ namespace Game.Scripts.Controls
             
             if (Input.GetKeyDown(MouseLeftButton))
                 AttackButtonClicked?.Invoke();
+            
+            if (Input.GetKeyDown(AbilityButton))
+                AbilityButtonClicked?.Invoke();
         }
 
         public void Disable()

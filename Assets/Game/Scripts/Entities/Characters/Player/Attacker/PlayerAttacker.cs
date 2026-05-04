@@ -9,9 +9,12 @@ namespace Game.Scripts.Entities.Player.Attacker
     public class PlayerAttacker : MonoBehaviour
     {
         [SerializeField] private PlayerAnimator _playerAnimator;
+        [SerializeField] private AbilityBase _ability;
         [SerializeField] private int _damage;
+        [SerializeField] private float _abilityDamage;
 
         private DetectorBase _enemyDetector;
+        private EnemyDetector _abilityDetector;
         private InputReader _inputReader;
         
         private IDamageable _enemy;
@@ -31,12 +34,14 @@ namespace Game.Scripts.Entities.Player.Attacker
         private void OnEnable()
         {
             _inputReader.AttackButtonClicked += Attack;
+            _inputReader.AbilityButtonClicked += DealAbilityDamage;
             _playerAnimator.AttackHitFrameReached += DealDamage;
         }
 
         private void OnDisable()
         {
             _inputReader.AttackButtonClicked -= Attack;
+            _inputReader.AbilityButtonClicked -= DealAbilityDamage;
             _playerAnimator.AttackHitFrameReached -= DealDamage;
         }
         
@@ -44,7 +49,7 @@ namespace Game.Scripts.Entities.Player.Attacker
         {
             _playerAnimator.PlayAttack();
         }
-
+        
         private void DealDamage()
         {
             _enemy = _enemyDetector.TryGetDamageable();
@@ -53,6 +58,11 @@ namespace Game.Scripts.Entities.Player.Attacker
                 return;
             
             _enemy.TakeDamage(_damage);
+        }
+
+        private void DealAbilityDamage()
+        {
+            _ability.Activate();
         }
     }
 }
