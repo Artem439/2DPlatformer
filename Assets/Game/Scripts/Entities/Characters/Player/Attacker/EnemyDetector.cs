@@ -5,6 +5,8 @@ namespace Game.Scripts.Entities.Player.Attacker
 {
     public class EnemyDetector : DetectorBase
     {
+        public Vector2 Size => _size;
+        
         public IDamageable TryGetNearestDamageable()
         {
             IDamageable nearest = null;
