@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Scripts.Entities.Base;
+﻿using Game.Scripts.Entities.Base;
 using Game.Scripts.Entities.Player.Attacker;
 using UnityEngine;
 
