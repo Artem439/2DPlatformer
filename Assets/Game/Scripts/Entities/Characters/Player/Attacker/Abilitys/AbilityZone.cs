@@ -16,11 +16,7 @@ namespace Game.Scripts.UI
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             
-            Vector2 parentScale = transform.parent.lossyScale;
-            transform.localScale = new Vector2(
-                _enemyDetector.Size.x / parentScale.x,
-                _enemyDetector.Size.y / parentScale.y
-            );
+            ChangeSizeZone();
         }
 
         private void OnEnable()
@@ -31,6 +27,15 @@ namespace Game.Scripts.UI
         private void OnDisable()
         {
             _abilityBase.AbilityActivated -= OnActiveZone;
+        }
+
+        private void ChangeSizeZone()
+        {
+            Vector2 parentScale = transform.parent.lossyScale;
+            transform.localScale = new Vector2(
+                _enemyDetector.Size.x / parentScale.x,
+                _enemyDetector.Size.y / parentScale.y
+            );
         }
 
         private void OnActiveZone(bool active)
